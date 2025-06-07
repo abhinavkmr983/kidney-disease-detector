@@ -1,16 +1,18 @@
 # -*- coding: utf-8 -*-
 """
 Created on Sat Jun  7 03:21:27 2025
-
 @author: abhin
 """
 
 import streamlit as st
 import pickle
 import numpy as np
+import os
 
-# Load the trained model
-model = pickle.load(open('kidney_disease_model.pkl', 'rb'))
+# Load the trained model safely
+model_path = os.path.join(os.path.dirname(__file__), 'kidney_disease_model.pkl')
+with open(model_path, 'rb') as f:
+    model = pickle.load(f)
 
 st.set_page_config(page_title="Kidney Disease Detection", layout="centered")
 st.title("🩺 AI-Powered Kidney Disease Detection App")
@@ -67,3 +69,4 @@ if st.button("🔍 Predict"):
         st.error("❌ Chronic Kidney Disease Detected")
     else:
         st.success("✅ No Kidney Disease Detected")
+
