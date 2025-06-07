@@ -5,14 +5,11 @@ Created on Sat Jun  7 03:21:27 2025
 """
 
 import streamlit as st
-import pickle
+import joblib
 import numpy as np
-import os
 
-# Load the trained model safely
-model_path = os.path.join(os.path.dirname(__file__), 'kidney_disease_model.pkl')
-with open(model_path, 'rb') as f:
-    model = pickle.load(f)
+# Load the trained model
+model = joblib.load('kidney_disease_model.joblib')
 
 st.set_page_config(page_title="Kidney Disease Detection", layout="centered")
 st.title("🩺 AI-Powered Kidney Disease Detection App")
